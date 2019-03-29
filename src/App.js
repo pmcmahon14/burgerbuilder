@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './App.module.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
+    render() {
+        return (
+          <div className="App">
 
-      </div>
-    );
-  }
+          </div>
+        );
+    }
 }
 
 export default App;
