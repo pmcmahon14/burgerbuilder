@@ -2,7 +2,7 @@ import React from 'react';
 import Fragment from '../../hoc/Fragment';
 import classes from './Layout.module.css';
 
-const layout = (props) => (
+const Layout = (props) => (
     <Fragment>
         <div>
             Toolbar, SideDrawer, Backdrop
@@ -13,4 +13,4 @@ const layout = (props) => (
     </Fragment>
 );
 
-export default layout;
+export default Layout;
