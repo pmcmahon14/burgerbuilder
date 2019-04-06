@@ -4,10 +4,17 @@ import Burger from '../../Components/Burger/Burger';
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls';
 
 const INGREDIENT_PRICES ={
-    lettuce: 0.5,
+    lettuce: 0.1,
     cheese: 0.4,
     meat: 1.3,
-    bacon: 0.7
+    bacon: 0.7,
+    pickle: 0,
+    tomato: 0.1,
+    mayo: 0,
+    ketchup: 0,
+    mustard: 0,
+    bbq: 0,
+    salsa: 0.25,
 };
 
 class BurgerBuilder extends Component {
@@ -16,7 +23,15 @@ class BurgerBuilder extends Component {
             lettuce: 0,
             bacon: 0,
             cheese: 0,
-            meat: 0
+            meat: 0,
+            pickle: 0,
+            tomato: 0,
+            mayo: 0,
+            ketchup: 0,
+            mustard: 0,
+            bbq: 0,
+            salsa: 0,
+
         },
         totalPrice: 4,
         purchasable: false
