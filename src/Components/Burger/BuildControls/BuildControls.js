@@ -7,13 +7,13 @@ const controls = [
     {label: 'Bacon', type: 'bacon'},
     {label: 'Cheese', type: 'cheese'},
     {label: 'Meat', type: 'meat'},
-    {label: 'Pickle', type: 'pickle'},
+    /*{label: 'Pickle', type: 'pickle'},
     {label: 'Tomato', type: 'tomato'},
     {label: 'Mayo', type: 'mayo'},
     {label: 'Ketchup', type: 'ketchup'},
     {label: 'Mustard', type: 'mustard'},
     {label: 'BBQ', type: 'bbq'},
-    {label: 'Salsa', type: 'salsa'},
+    {label: 'Salsa', type: 'salsa'},*/
 ];
 
 const BuildControls = (props) => (
@@ -30,7 +30,8 @@ const BuildControls = (props) => (
         ))}
         <button
             className={classes.OrderButton}
-        disabled={!props.purchasable}>ORDER NOW</button>
+            disabled={!props.purchasable}
+            onClick={props.ordered}>ORDER NOW</button>
     </div>
 );
 
