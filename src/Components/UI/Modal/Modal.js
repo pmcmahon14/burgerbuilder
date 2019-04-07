@@ -1,8 +1,12 @@
 import React from 'react';
 
 import classes from './Modal.module.css';
+import Fragment from '../../../hoc/Fragment';
+import Backdrop from '../Backdrop/Backdrop';
 
 const Modal = (props) => (
+    <Fragment>
+        <Backdrop show={props.show} clicked={props.modalClosed}/>
     <div
         className={classes.Modal}
     style={{
@@ -11,6 +15,7 @@ const Modal = (props) => (
     }}>
         {props.children}
     </div>
+    </Fragment>
 );
 
 export default Modal;
