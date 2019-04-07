@@ -4,6 +4,7 @@ import Fragment from '../../hoc/Fragment';
 import Burger from '../../Components/Burger/Burger';
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls';
 import Modal from '../../Components/UI/Modal/Modal';
+import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary';
 
 const INGREDIENT_PRICES ={
     lettuce: 0.1,
@@ -90,7 +91,9 @@ class BurgerBuilder extends Component {
         }
         return (
             <Fragment>
-                <Modal/>
+                <Modal>
+                    <OrderSummary ingredients={this.state.ingredients}/>
+                </Modal>
                 <Burger ingredients={this.state.ingredients}/>
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
