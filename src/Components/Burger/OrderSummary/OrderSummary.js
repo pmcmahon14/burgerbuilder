@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import Fragment from '../../../hoc/Fragment';
+import Fragment from '../../../hoc/Fragment/Fragment';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
