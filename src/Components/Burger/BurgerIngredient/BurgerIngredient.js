@@ -5,8 +5,10 @@ import classes from './BurgerIngredient.module.css';
 
 class BurgerIngredient extends Component {
     render () {
+        //start with bun only
         let ingredient = null;
 
+        //switch statement analyzes type of ingredient added or deleted for image; classes from module.css
         switch (this.props.type) {
             case ('bread-bottom'):
                 ingredient = <div className={classes.BreadBottom}></div>;
@@ -55,10 +57,12 @@ class BurgerIngredient extends Component {
             default:
                 ingredient = null;
         }
+        //returns single ingredient
         return ingredient;
     }
 }
 
+//prop type validation; will pass error if prop not passed
 BurgerIngredient.propTypes = {
     type: PropTypes.string.isRequired
 };

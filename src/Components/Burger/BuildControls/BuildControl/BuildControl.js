@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './BuildControl.module.css';
 
+//creates add/delete buttons for each ingredient, Less set to disabled at amount 0
 const BuildControl = (props) => (
     <div className={classes.BuildControl}>
         <div className={classes.Label}>{props.label}</div>

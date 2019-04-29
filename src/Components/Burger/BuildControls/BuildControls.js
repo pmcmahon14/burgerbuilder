@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './BuildControls.module.css';
 import  BuildControl from './BuildControl/BuildControl';
 
+//create array listing ingredients by label and type
 const controls = [
     {label: 'Lettuce', type: 'lettuce'},
     {label: 'Bacon', type: 'bacon'},

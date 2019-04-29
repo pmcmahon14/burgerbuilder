@@ -23,7 +23,7 @@ const INGREDIENT_PRICES ={
 };
 
 
-//sets all ingredients to start at 0and base price of 4
+//sets all ingredients to start at 0 and base price of 4; 'state' replaces old constructor/super
 class BurgerBuilder extends Component {
     state = {
         ingredients: {
@@ -141,12 +141,15 @@ class BurgerBuilder extends Component {
             orderSummary = <Spinner/>;
         }
         return (
+            //Fragment tag acts as a div for children JSX
             <Fragment>
                 {/*Modal will show either spinner or order summary*/}
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
                     {orderSummary}
                 </Modal>
+                {/*shows burger image as currently built*/}
                 <Burger ingredients={this.state.ingredients}/>
+                {/*enables user to add and subtract ingredients, price as ingredients change, and verify/place order*/}
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
                     ingredientRemoved={this.removeIngredientHandler}
