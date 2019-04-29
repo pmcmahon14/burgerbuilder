@@ -115,8 +115,8 @@ class BurgerBuilder extends Component {
             },
             deliveryMethod: 'fastest'
         };
-        axios.post('/orders.json', order);
-        {/*resets loading and purchasing values upon either completion of sending order or error occurs*/}
+        axios.post('/orders.json', order)
+        //resets loading and purchasing values upon either completion of sending order or error occurs
             .then(response => {
                 this.setState({loading: false, purchasing: false})
             })
