@@ -27,25 +27,24 @@ const INGREDIENT_PRICES ={
 //sets all ingredients to start at 0 and base price of 4; 'state' replaces old constructor/super
 class BurgerBuilder extends Component {
     state = {
-        ingredients: {
-            lettuce: 0,
-            bacon: 0,
-            cheese: 0,
-            meat: 0,
-            /*pickle: 0,
-            tomato: 0,
-            mayo: 0,
-            ketchup: 0,
-            mustard: 0,
-            bbq: 0,
-            salsa: 0,*/
-
-        },
+        ingredients: null,
         totalPrice: 4,
         purchasable: false,
         purchasing: false,
-        loading: false
+        loading: false,
+        error: null
     };
+
+    //access ingredients form database, all set to 0
+    componentDidMount () {
+        axios.get('https://burgerbuilder-f8583.firebaseio.com/ingredients.json')
+            .then(response => {
+                this.setState({ingredients: response.data});
+            })
+            .catch(error => {
+                this.setState({error: true})
+            });
+    }
 
     updatePurchaseState (ingredients) {
         const sum = Object.keys(ingredients)
@@ -133,14 +132,38 @@ class BurgerBuilder extends Component {
         for (let key in disabledInfo) {
             disabledInfo[key] = disabledInfo[key] <= 0
         }
-        let orderSummary = <OrderSummary
-            ingredients={this.state.ingredients}
-            price={this.state.totalPrice}
-            purchaseCancelled={this.purchaseCancelHandler}
-            purchaseContinued={this.purchaseContinueHandler}/>;
+        let orderSummary = null;
+
+        //if no ingredients yet, then start with spinner
+        let burger = this.state.error ? <p>Ingredients can't be loaded</p> : <Spinner/>;
+
+        if (this.state.ingredients) {
+            //shows burger image as currently built
+            burger = (
+                <Fragment>
+                    <Burger ingredients={this.state.ingredients}/>
+                    {/*enables user to add and subtract ingredients, price as ingredients change, and verify/place order*/}
+                    <BuildControls
+                        ingredientAdded={this.addIngredientHandler}
+                        ingredientRemoved={this.removeIngredientHandler}
+                        disabled={disabledInfo}
+                        purchasable={this.state.purchasable}
+                        ordered={this.purchaseHandler}
+                        price={this.state.totalPrice}/>
+                </Fragment>
+            );
+            orderSummary = <OrderSummary
+                ingredients={this.state.ingredients}
+                price={this.state.totalPrice}
+                purchaseCancelled={this.purchaseCancelHandler}
+                purchaseContinued={this.purchaseContinueHandler}/>;
+        }
         if (this.state.loading) {
             orderSummary = <Spinner/>;
         }
+
+
+
         return (
             //Fragment tag acts as a div for children JSX
             <Fragment>
@@ -148,16 +171,7 @@ class BurgerBuilder extends Component {
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
                     {orderSummary}
                 </Modal>
-                {/*shows burger image as currently built*/}
-                <Burger ingredients={this.state.ingredients}/>
-                {/*enables user to add and subtract ingredients, price as ingredients change, and verify/place order*/}
-                <BuildControls
-                    ingredientAdded={this.addIngredientHandler}
-                    ingredientRemoved={this.removeIngredientHandler}
-                    disabled={disabledInfo}
-                    purchasable={this.state.purchasable}
-                    ordered={this.purchaseHandler}
-                    price={this.state.totalPrice}/>
+                {burger}
             </Fragment>
         );
     }
