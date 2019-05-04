@@ -37,6 +37,7 @@ class BurgerBuilder extends Component {
 
     //access ingredients form database, all set to 0
     componentDidMount () {
+        console.log(this.props);
         axios.get('https://burgerbuilder-f8583.firebaseio.com/ingredients.json')
             .then(response => {
                 this.setState({ingredients: response.data});
@@ -99,7 +100,7 @@ class BurgerBuilder extends Component {
     //after "continue" is clicked, sends order to server
     purchaseContinueHandler = () => {
         //alert('You may continue!');
-        this.setState({loading:true});
+        /*this.setState({loading:true});
         const order = {
             ingredients: this.state.ingredients,
             //can calculate price on server
@@ -122,7 +123,8 @@ class BurgerBuilder extends Component {
             })
             .catch(error => {
                 this.setState({loading: false, purchasing: false});
-            });
+            });*/
+        this.props.history.push('/checkout');
     };
 
     render() {
