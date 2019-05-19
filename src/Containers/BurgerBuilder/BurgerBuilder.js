@@ -38,13 +38,13 @@ class BurgerBuilder extends Component {
     //access ingredients form database, all set to 0
     componentDidMount () {
         console.log(this.props);
-        axios.get('https://burgerbuilder-f8583.firebaseio.com/ingredients.json')
+        /*axios.get('https://burgerbuilder-f8583.firebaseio.com/ingredients.json')
             .then(response => {
                 this.setState({ingredients: response.data});
             })
             .catch(error => {
                 this.setState({error: true})
-            });
+            });*/
     }
 
     updatePurchaseState (ingredients) {
