@@ -8,27 +8,18 @@ import Modal from '../../Components/UI/Modal/Modal';
 import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../Components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import axios from '../../axiosOrders';
 import * as burgerBuilderActions from '../../Store/Actions/index';
+import axios from '../../axiosOrders';
 
 //sets all ingredients to start at 0 and base price of 4; 'state' replaces old constructor/super
 class BurgerBuilder extends Component {
     state = {
         purchasing: false,
-        loading: false,
-        error: false
     };
 
     //access ingredients form database, all set to 0
     componentDidMount () {
         console.log(this.props);
-        /*axios.get('https://burgerbuilder-f8583.firebaseio.com/ingredients.json')
-            .then(response => {
-                this.setState({ingredients: response.data});
-            })
-            .catch(error => {
-                this.setState({error: true})
-            });*/
     }
 
     updatePurchaseState (ingredients) {
