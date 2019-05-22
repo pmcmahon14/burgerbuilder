@@ -29,7 +29,7 @@ export const purchaseBurger = (orderData) => {
         //resets loading and purchasing values upon either completion of sending order or error occurs
             .then(response => {
                 console.log(response.data);
-                dispatch(purchaseBurgerSuccess(response.data, orderData));
+                dispatch(purchaseBurgerSuccess(response.data.name, orderData));
             })
             .catch(error => {
                 dispatch(purchaseBurgerFail(error));
