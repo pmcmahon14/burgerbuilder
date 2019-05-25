@@ -42,6 +42,9 @@ class Auth extends Component {
 
     checkValidity(value, rules) {
         let isValid = true;
+        if (!rules) {
+            return true;
+        }
 
         if (rules.required) {
             isValid = value.trim() !== '' && isValid;
@@ -53,6 +56,16 @@ class Auth extends Component {
 
         if (rules.maxLength) {
             isValid = value.length <= rules.maxLength && isValid
+        }
+
+        if (rules.isEmail) {
+            const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            isValid = pattern.test(value) && isValid
+        }
+
+        if (rules.isNumeric) {
+            const pattern = /^\d+$/;
+            isValid = pattern.test(value) && isValid
         }
 
         return isValid;
@@ -94,8 +107,7 @@ class Auth extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
-                changed={(event) => this.inputChangedHandler(event, formElement.id)}
-            />
+                changed={(event) => this.inputChangedHandler(event, formElement.id)}/>
         ));
 
         return (
