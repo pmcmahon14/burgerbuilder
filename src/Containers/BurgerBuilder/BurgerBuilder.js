@@ -12,7 +12,7 @@ import * as actions from '../../Store/Actions/index';
 import axios from '../../axiosOrders';
 
 //sets all ingredients to start at 0 and base price of 4; 'state' replaces old constructor/super
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
     state = {
         purchasing: false,
     };
