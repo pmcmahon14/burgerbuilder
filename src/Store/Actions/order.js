@@ -28,7 +28,6 @@ export const purchaseBurger = (orderData, token) => {
         axios.post('/orders.json?auth=' + token, orderData)
         //resets loading and purchasing values upon either completion of sending order or error occurs
             .then(response => {
-                console.log(response.data);
                 dispatch(purchaseBurgerSuccess(response.data.name, orderData));
             })
             .catch(error => {

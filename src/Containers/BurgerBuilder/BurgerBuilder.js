@@ -19,7 +19,6 @@ class BurgerBuilder extends Component {
 
     //access ingredients form database, all set to 0
     componentDidMount () {
-        console.log(this.props);
         this.props.onInitIngredients();
     }
 
