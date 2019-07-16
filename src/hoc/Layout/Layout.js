@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 
 import Fragment from '../Fragment/Fragment';
@@ -6,38 +6,33 @@ import classes from './Layout.module.css';
 import Toolbar from '../../Components/Navigation/Toolbar/Toolbar';
 import SideDrawer from "../../Components/Navigation/SideDrawer/SideDrawer";
 
-class Layout extends Component {
-    state = {
-        showSideDrawer: true
+const Layout = props => {
+    const [sideDrawerIsVisible, setSideDrawerIsVisible] = useState(false);
+
+    const sideDrawerClosedHandler = () => {
+        setSideDrawerIsVisible(false);
     };
 
-    SideDrawerClosedHandler = () => {
-        this.setState({showSideDrawer: false});
+    const sideDrawerToggleHandler = () => {
+        setSideDrawerIsVisible(!sideDrawerIsVisible);
     };
 
-    SideDrawerToggleHandler = () => {
-        this.setState((prevState) => {
-            return {showSideDrawer: !this.state.showSideDrawer};
-        });
-    };
-
-    render () {
         return (
             <Fragment>
             <Toolbar
-                isAuth={this.props.isAuthenticated}
-                drawerToggleClicked={this.SideDrawerToggleHandler}/>
+                isAuth={props.isAuthenticated}
+                drawerToggleClicked={sideDrawerToggleHandler}/>
             <SideDrawer
-                isAuth={this.props.isAuthenticated}
-                open={this.state.showSideDrawer}
-                closed={this.SideDrawerClosedHandler}/>
+                isAuth={props.isAuthenticated}
+                open={sideDrawerIsVisible}
+                closed={sideDrawerClosedHandler}/>
             <main className={classes.Content}>
-                {this.props.children}
+                {props.children}
             </main>
         </Fragment>
         )
     }
-}
+
 
 const mapStateToProps = state => {
     return {
