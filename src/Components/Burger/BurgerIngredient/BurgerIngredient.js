@@ -1,15 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import classes from './BurgerIngredient.module.css';
 
-class BurgerIngredient extends Component {
-    render () {
+const BurgerIngredient = props => {
         //start with bun only
         let ingredient = null;
 
         //switch statement analyzes type of ingredient added or deleted for image; classes from module.css
-        switch (this.props.type) {
+        switch (props.type) {
             case ('bread-bottom'):
                 ingredient = <div className={classes.BreadBottom}></div>;
                 break;
@@ -60,7 +59,6 @@ class BurgerIngredient extends Component {
         //returns single ingredient
         return ingredient;
     }
-}
 
 //prop type validation; will pass error if prop not passed
 BurgerIngredient.propTypes = {
